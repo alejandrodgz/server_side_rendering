@@ -1,0 +1,11 @@
+<div>
+  <h1>{{todo.title}}</h1>
+  <h3>date : {{todo.due_date}}</h3>
+  <p>{{todo.description}}</p>
+  <p><strong>priority_level:{{todo.priority_level}}</strong></p>
+  {% if todo.done %}
+  <p> complete! </p>
+  {% else %}  
+  <p>must be done before:{{todo.date}}</p>
+  {% endif %}
+</div>

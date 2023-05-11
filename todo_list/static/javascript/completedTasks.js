@@ -1,19 +1,19 @@
 const baseURL = window.location.origin;
 
 const getTodos = async () => {
-  const response = await fetch(`${baseURL}/todo_list/api/v1/`);
+  const response = await fetch(`${baseURL}/api/v1/`);
   const data = await response.json();
   return data.todos;
 };
 
 const deleteTodoApi = async (todoId) => {
-  await fetch(`../api/v1/${todoId}/delete`, {
+  await fetch(`${baseURL}/api/v1/${todoId}/delete`, {
     method: "DELETE",
   });
 };
 
 const updateTodoApi = async (todoId, todoUpdated) => {
-  await fetch(`../api/v1/${todoId}/update/`, {
+  await fetch(`${baseURL}/api/v1/${todoId}/update/`, {
     method: "PUT",
     headers: {
       "Content-type": "application/json",
@@ -29,7 +29,7 @@ const deleteTodo = async (todoId, containerId) => {
 };
 
 const updateForm = async (todoId) => {
-  const response = await fetch(`../api/v1/${todoId}`);
+  const response = await fetch(`${baseURL}/api/v1/${todoId}`);
   const todo = await response.json();
   const data = todo.todo;
   console.log(data.due_date);

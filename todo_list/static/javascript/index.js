@@ -2,21 +2,21 @@ const baseURL = window.location.origin;
 
 // Fetch all todos
 const getTodos = async () => {
-  const response = await fetch(`${baseURL}/todo_list/api/v1/`);
+  const response = await fetch(`${baseURL}/api/v1/`);
   const data = await response.json();
   return data.todos;
 };
 
 // Delete a todo using the API
 const deleteTodoApi = async (todoId) => {
-  await fetch(`${baseURL}/todo_list/api/v1/${todoId}/delete`, {
+  await fetch(`${baseURL}/api/v1/${todoId}/delete`, {
     method: "DELETE",
   });
 };
 
 // Create a new todo using the API
 const postTodoApi = async (todo) => {
-  await fetch(`${baseURL}/todo_list/api/v1/`, {
+  await fetch(`${baseURL}/api/v1/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +27,7 @@ const postTodoApi = async (todo) => {
 
 // Update an existing todo using the API
 const updateTodoApi = async (todoId, todoUpdated) => {
-  await fetch(`${baseURL}/todo_list/api/v1/${todoId}/update/`, {
+  await fetch(`${baseURL}/api/v1/${todoId}/update/`, {
     method: "PUT",
     headers: {
       "Content-type": "application/json",
@@ -54,7 +54,7 @@ const postTodo = async (todo, containerId) => {
 
 // Populate the edit form with an existing todo's data
 const updateForm = async (todoId) => {
-  const response = await fetch(`${baseURL}/todo_list/api/v1/${todoId}`);
+  const response = await fetch(`${baseURL}/api/v1/${todoId}`);
   const todo = await response.json();
   const data = todo.todo;
 
@@ -135,7 +135,7 @@ const cardMaker = (element, date, ContainerToAppend) => {
       </p>  
       <button class="btn btn-danger delete-todo mt-3 mb-2 mx-2" onclick="deleteTodo('${
         element.id
-      }', '${ContainerToAppend.id}')" todo-id="${element.id}">Delete</button>
+      }', '${ContainerToAppend.id}')" todo-id="${element.id}" >Delete</button>
       <button type="button" onclick="updateForm('${
         element.id
       }')" class="btn btn-primary mt-3 mb-2 edit-button" data-bs-toggle="modal" data-bs-target="#edit-todo">
@@ -236,6 +236,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const filterClear = document.querySelector("#clear-button");
   filterClear.addEventListener("click", async () => {
     await makeTodos(container);
+
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
  
   });
 });

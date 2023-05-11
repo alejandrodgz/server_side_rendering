@@ -1,5 +1,7 @@
+const baseURL = window.location.origin;
+
 const postTodoApi = async (todo) => {
-    await fetch("../api/v1/create/", {
+    await fetch(`${baseURL}/api/v1/create/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -12,7 +14,7 @@ const postTodo = async (todo) => {
     await postTodoApi(todo);
     const form = document.querySelector("#post-form");
     form.reset();
-    window.location.href = "/todo_list";
+    window.location.href = "/";
 };
 
 document.addEventListener("DOMContentLoaded", async () => {

@@ -1,0 +1,129 @@
+/* Color variables */
+:root {
+    --body-color: #EAF2FB;
+    --nav-background: #0A1B24;
+    --nav-light: #062937;
+    --nav-secondary: #1A8BBE;
+    --button-color: #F68B46;
+}
+
+/* Body styles */
+body {
+    background-color: var(--body-color);
+    box-shadow: 2px 2px 2px 2px #cdd4dc;
+    min-height: 100vh;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: var(--nav-background) !important;
+    min-height: 8rem;
+}
+
+.navbar-nav, .nav-link, .navbar-brand {
+    color: var(--body-color);
+}
+
+/* Card styles */
+.card {
+    border: none;
+    text-align: center;
+    border-radius: 2rem;
+    width: 70%;
+    min-width: 20rem;
+    box-shadow: 1px 1px 1px 1px #eaedf1;
+}
+
+.card-title {
+    background-color: var(--body-color);
+    padding: 0.8rem;
+    border-radius: 2rem;
+    width: 100%;
+    box-shadow: 1px 1px 1px 1px #d8e0e9;    
+}
+
+.card-priority {
+    text-align: center;
+    color: white;
+    padding: 0.4rem;
+    font-size: 0.8rm;
+    display: inline-block;
+    width: 10rem;
+}
+
+/* Card priority level styles */
+.card-priority[level="1"] {
+    background-color: #EE2F24;
+}
+
+.card-priority[level="2"] {
+    background-color: #F68B46;
+}
+
+.card-priority[level="3"] {
+    background-color: #5CC7D3;
+}
+
+.card-text.mt-4 {
+    font-size: 1.2rem;
+}
+
+.delete-todo {
+    background-color: var(--nav-secondary);
+    border: none;
+    min-width: 5rem;
+}
+
+.edit-button {
+    background-color: var(--nav-light);
+    border: none;
+    min-width: 5rem;
+}
+
+/* counter */
+.stats {
+    width: 8rem !important;
+    background-color: var(--nav-light) !important;
+    box-shadow: 1px 1px 1px 1px #d8e0e9;
+}
+
+.stats:hover {
+    background-color: var(--nav-secondary)!important;
+}
+
+.badge.text-bg-secondary {
+    background-color: var(--body-color) !important;
+    color: var(--nav-light) !important;
+}
+
+.clear-button{
+    background-color:var(--nav-secondary);
+    border: none;
+}
+
+/* Task status styles */
+.incompleted-task {
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #EE2F24;
+    width: 0.7rem;
+    height: 0.7rem;
+}
+
+.completed-task {
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #5CC7D3;
+    width: 0.7rem;
+    height: 0.7rem;
+}
+
+/* Form styles */
+.form-container {
+    width: 60% !important;
+    min-width: 20rem;
+}
+
+.form-label {
+    font-size: 1.2rem;
+}

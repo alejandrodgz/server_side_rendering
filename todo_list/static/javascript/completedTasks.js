@@ -1,33 +1,19 @@
 const baseURL = window.location.origin;
 
-// Fetch all todos
 const getTodos = async () => {
   const response = await fetch(`${baseURL}/todo_list/api/v1/`);
   const data = await response.json();
   return data.todos;
 };
 
-// Delete a todo using the API
 const deleteTodoApi = async (todoId) => {
-  await fetch(`${baseURL}/todo_list/api/v1/${todoId}/delete`, {
+  await fetch(`../api/v1/${todoId}/delete`, {
     method: "DELETE",
   });
 };
 
-// Create a new todo using the API
-const postTodoApi = async (todo) => {
-  await fetch(`${baseURL}/todo_list/api/v1/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(todo),
-  });
-};
-
-// Update an existing todo using the API
 const updateTodoApi = async (todoId, todoUpdated) => {
-  await fetch(`${baseURL}/todo_list/api/v1/${todoId}/update/`, {
+  await fetch(`../api/v1/${todoId}/update/`, {
     method: "PUT",
     headers: {
       "Content-type": "application/json",
@@ -36,32 +22,21 @@ const updateTodoApi = async (todoId, todoUpdated) => {
   });
 };
 
-// Delete a todo by ID and update the container
 const deleteTodo = async (todoId, containerId) => {
   await deleteTodoApi(todoId);
   const container = document.getElementById(containerId);
   await makeTodos(container);
 };
 
-// Create a new todo and update the container
-const postTodo = async (todo, containerId) => {
-  await postTodoApi(todo);
-  const container = document.getElementById(containerId);
-  await makeTodos(container);
-  const form = document.querySelector("#post-form");
-  form.reset();
-};
-
-// Populate the edit form with an existing todo's data
 const updateForm = async (todoId) => {
-  const response = await fetch(`${baseURL}/todo_list/api/v1/${todoId}`);
+  const response = await fetch(`../api/v1/${todoId}`);
   const todo = await response.json();
   const data = todo.todo;
-
-  // Populate the form with the existing data
+  console.log(data.due_date);
   const form = document.querySelector("#edit-form");
   const elementId = document.querySelector("#element-id");
   elementId.setAttribute("get-id", data.id);
+  //form.elements["element-id"].setAttribute("get-id", data.id);
   form.elements["title-edit"].value = data.title;
   form.elements["description-edit"].value = data.description;
   form.elements["time-edit"].value = data.due_date.slice(0, -4);
@@ -158,7 +133,7 @@ const makeTodos = async (ContainerToAppend, filter = null) => {
 
   data.forEach((element) => {
     // Only create todo card if it's not marked as done
-    if (!element.done && !filter) {
+    if (element.done && !filter) {
       // Count priorities
       switch (element.priority_level) {
         case "1":
@@ -198,44 +173,15 @@ const makeTodos = async (ContainerToAppend, filter = null) => {
       }
     }
   });
-
-  // Update display of number of todos in each priority level
-  const getHigh = document.querySelector("#high");
-  getHigh.textContent = high;
-  const getMedium = document.querySelector("#medium");
-  getMedium.textContent = medium;
-  const getLow = document.querySelector("#low");
-  getLow.textContent = low;
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector("#todo-container");
   await makeTodos(container);
+  const datetime = document.querySelector("#dateTimeInput");
 
-  const updateButton = document.querySelector("#submit-edit");
-  updateButton.addEventListener("click", async () => {
+  const updateButtom = document.querySelector("#submit-edit");
+  updateButtom.addEventListener("click", async () => {
     await updateTodo(container.id);
-  });
-
-  // Filter buttons
-  const filterHigh = document.querySelector("#high-button");
-  filterHigh.addEventListener("click", async () => {
-    await makeTodos(container, "1");
-  });
-
-  const filterMedium = document.querySelector("#medium-button");
-  filterMedium.addEventListener("click", async () => {
-    await makeTodos(container, "2");
-  });
-
-  const filterLow = document.querySelector("#low-button");
-  filterLow.addEventListener("click", async () => {
-    await makeTodos(container, "3");
-  });
-
-  const filterClear = document.querySelector("#clear-button");
-  filterClear.addEventListener("click", async () => {
-    await makeTodos(container);
- 
   });
 });

@@ -1,0 +1,43 @@
+<div class="modal fade" id="edit-todo" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Edit todo</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="edit-form">
+            <div class="mb-3 mt-3" id="element-id">
+              <label for="title-edit" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title-edit" required>
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="description-edit" class="form-label" required>Description</label>
+              <textarea class="form-control" id="description-edit" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="time-edit" class="form-label">Due date</label>
+              <input type="datetime-local" class="form-control" id="time-edit" name="dateTimeInput" required>
+            </div>
+            <div class="mb-3">
+            <label for="priority-edit" class="form-label">Priority level</label>
+            <select class="form-select" id="priority-edit" required>
+              <option value="1">high</option>
+              <option value="2">medium</option>
+              <option value="3">low</option>
+            </select>
+          </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="edit-completed">
+              <label class="form-check-label" for="edit-completed">completed</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="submit-edit">Save changes</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>

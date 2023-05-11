@@ -9,9 +9,15 @@ from django.views.decorators.csrf import csrf_exempt
 def index(request):
     return render(request, 'todo_list/index.html')
 
+def create_task(request):
+    return render(request, 'todo_list/createTask.html')
+
+def completed_tasks(request):
+    return render(request, 'todo_list/completedTasks.html')
+
 def todo_list(request):
     if request.method == 'GET':
-        todos = Todo.objects.all().values()
+        todos = Todo.objects.all().order_by('due_date', 'priority_level').values()
         data = {'todos': list(todos)}
         return JsonResponse(data)
 

@@ -1,0 +1,49 @@
+<div class="container p-3 form-container">
+  <form id="post-form">
+    <div class="mb-3 mt-3">
+      <label for="title-todo" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title-todo" required />
+      <div id="emailHelp" class="form-text">
+        this is how you will see your task displayed in the list
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="description-text" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="description-text"
+        rows="3"
+        required
+      ></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="dateTimeInput" class="form-label">Due date</label>
+      <input
+        type="datetime-local"
+        class="form-control"
+        id="dateTimeInput"
+        name="dateTimeInput"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="priority-select" class="form-label">Priority level</label>
+      <select class="form-select" id="priority-select" required>
+        <option value="1" style="color: #ee2f24">high</option>
+        <option value="2" style="color: #f68b46">medium</option>
+        <option value="3" style="color: #5cc7d3">low</option>
+      </select>
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="completed" />
+      <label class="form-check-label" for="completed">completed</label>
+    </div>
+    <button
+      type="submit"
+      style="background-color: #062937; border: none"
+      class="btn btn-dark"
+    >
+      Submit
+    </button>
+  </form>
+</div>
